@@ -1,28 +1,22 @@
 package io.github.townyadvanced.townyresources.util;
 
 import com.meowj.langutils.lang.LanguageHelper;
+import com.palmergames.bukkit.towny.TownyAPI;
+import com.palmergames.bukkit.util.Colors;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
 import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
-import io.lumine.mythic.lib.api.item.NBTItem;
+import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import io.lumine.xikage.mythicmobs.items.MythicItem;
 import net.Indyuce.mmoitems.MMOItems;
-import net.Indyuce.mmoitems.api.Type;
-import net.Indyuce.mmoitems.api.item.mmoitem.MMOItem;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import com.palmergames.bukkit.towny.TownyAPI;
-import com.palmergames.bukkit.util.Colors;
-
-import io.github.townyadvanced.townyresources.TownyResources;
-import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
