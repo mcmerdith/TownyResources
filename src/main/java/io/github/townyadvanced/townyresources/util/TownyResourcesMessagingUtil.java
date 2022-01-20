@@ -5,7 +5,11 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
 import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
+import io.lumine.mythic.lib.api.item.NBTItem;
 import io.lumine.xikage.mythicmobs.items.MythicItem;
+import net.Indyuce.mmoitems.MMOItems;
+import net.Indyuce.mmoitems.api.Type;
+import net.Indyuce.mmoitems.api.item.mmoitem.MMOItem;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -18,6 +22,7 @@ import com.palmergames.bukkit.util.Colors;
 import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -145,6 +150,23 @@ public class TownyResourcesMessagingUtil {
                     String maybeDisplayName = mythicItem.getDisplayName();
                     if (maybeDisplayName != null)
                         return maybeDisplayName.replaceAll("[^\\w\\s]\\w","");
+                }
+            }
+
+            // mmoitems integration
+            if(TownyResources.getPlugin().isMMOItemsInstalled()) {
+                // format: 'TYPE:MATERIALNAME'
+                String[] parts = materialName.split(":");
+                if (parts.length == 2 && MMOItems.plugin.getTypes().has(parts[0])) {
+                    ItemStack mmoItem = MMOItems.plugin.getItem(parts[0], parts[1]);
+                    if (mmoItem != null) {
+                        if (mmoItem.hasItemMeta() && mmoItem.getItemMeta().hasDisplayName()) {
+                            return mmoItem.getItemMeta().getDisplayName();  // Known material
+                        } else {
+                            // Unknown, only return the part of the material name after the :
+                            return WordUtils.capitalizeFully(parts[1].replaceAll("_", " "));
+                        }
+                    }
                 }
             }
         } else {
