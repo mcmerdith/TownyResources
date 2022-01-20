@@ -10,6 +10,7 @@ import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation
 import io.github.townyadvanced.townyresources.util.TownyResourcesMessagingUtil;
 
 import io.lumine.xikage.mythicmobs.items.ItemManager;
+import net.Indyuce.mmoitems.MMOItems;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -107,6 +108,21 @@ public class TownResourceCollectionController {
                     itemStack.setAmount(amount);
                     itemStackList.add(itemStack);
                     continue;
+                }
+            }
+
+            // mmoitems integration
+            if (TownyResources.getPlugin().isMMOItemsInstalled()) {
+                // format: 'TYPE:MATERIALNAME'
+                String[] parts = materialName.split(":");
+                if (parts.length == 2 && MMOItems.plugin.getTypes().has(parts[0])) {
+                    ItemStack mmoItem = MMOItems.plugin.getItem(parts[0], parts[1]);
+                    if (mmoItem != null) {
+                        itemStack = mmoItem;
+                        itemStack.setAmount(amount);
+                        itemStackList.add(itemStack);
+                        continue;
+                    }
                 }
             }
 
