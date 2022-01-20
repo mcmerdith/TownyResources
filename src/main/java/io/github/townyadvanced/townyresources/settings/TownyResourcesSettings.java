@@ -12,6 +12,7 @@ import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
 import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.util.FileMgmt;
+import net.Indyuce.mmoitems.MMOItems;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -207,6 +208,16 @@ public class TownyResourcesSettings {
 			ItemStack mythicItem = TownyResources.getPlugin().getMythicItemManager().getItemStack(materialName);
 			if (mythicItem != null)
 				return true;  // Known material
+		}
+		// mmoitems integration
+		if (TownyResources.getPlugin().isMMOItemsInstalled()) {
+			// format: 'TYPE:MATERIALNAME'
+			String[] parts = materialName.split(":");
+			if (parts.length == 2 && MMOItems.plugin.getTypes().has(parts[0])) {
+				ItemStack mmoItem = MMOItems.plugin.getItem(parts[0], parts[1]);
+				if (mmoItem != null)
+					return true;  // Known material
+			}
 		}
 		return false; //Unknown material		
 	}
