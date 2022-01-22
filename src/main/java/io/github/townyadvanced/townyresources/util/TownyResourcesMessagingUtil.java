@@ -9,13 +9,15 @@ import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory
 import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
+import io.lumine.mythic.lib.MythicLib;
 import io.lumine.xikage.mythicmobs.items.MythicItem;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.mmoitem.MMOItem;
-import net.Indyuce.mmoitems.stat.data.StringData;
+import net.Indyuce.mmoitems.stat.type.NameData;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -158,7 +160,7 @@ public class TownyResourcesMessagingUtil {
                     MMOItem mmoItem = MMOItems.plugin.getMMOItem(MMOItems.plugin.getTypes().get(parts[0]), parts[1]);
                     if (mmoItem != null) {
                         if (mmoItem.hasData(ItemStats.NAME)) {
-                            return ((StringData)mmoItem.getData(ItemStats.NAME)).getString();  // Known material
+                            return MythicLib.plugin.parseColors(((NameData)mmoItem.getData(ItemStats.NAME)).bake());  // Known material
                         } else {
                             // Unknown, only return the part of the material name after the :
                             return WordUtils.capitalizeFully(parts[1].replaceAll("_", " "));
