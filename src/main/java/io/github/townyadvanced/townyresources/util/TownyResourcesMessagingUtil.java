@@ -17,10 +17,15 @@ import net.Indyuce.mmoitems.api.item.mmoitem.MMOItem;
 import net.Indyuce.mmoitems.stat.type.NameData;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import com.palmergames.bukkit.towny.TownyAPI;
+import com.palmergames.bukkit.util.Colors;
+
+import io.github.townyadvanced.townyresources.TownyResources;
+import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
