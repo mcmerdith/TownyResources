@@ -10,7 +10,10 @@ import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import io.lumine.xikage.mythicmobs.items.MythicItem;
+import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
+import net.Indyuce.mmoitems.api.item.mmoitem.MMOItem;
+import net.Indyuce.mmoitems.stat.data.StringData;
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -152,10 +155,10 @@ public class TownyResourcesMessagingUtil {
                 // format: 'TYPE:MATERIALNAME'
                 String[] parts = materialName.split(":");
                 if (parts.length == 2 && MMOItems.plugin.getTypes().has(parts[0])) {
-                    ItemStack mmoItem = MMOItems.plugin.getItem(parts[0], parts[1]);
+                    MMOItem mmoItem = MMOItems.plugin.getMMOItem(MMOItems.plugin.getTypes().get(parts[0]), parts[1]);
                     if (mmoItem != null) {
-                        if (mmoItem.hasItemMeta() && mmoItem.getItemMeta().hasDisplayName()) {
-                            return mmoItem.getItemMeta().getDisplayName();  // Known material
+                        if (mmoItem.hasData(ItemStats.NAME)) {
+                            return ((StringData)mmoItem.getData(ItemStats.NAME)).getString();  // Known material
                         } else {
                             // Unknown, only return the part of the material name after the :
                             return WordUtils.capitalizeFully(parts[1].replaceAll("_", " "));
