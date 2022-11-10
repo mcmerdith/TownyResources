@@ -33,6 +33,10 @@
       <name>Lumine Releases</name>
       <url>https://mvn.lumine.io/repository/maven-public/</url>
     </repository>
+    <repository>
+      <id>phoenix</id>
+      <url>https://nexus.phoenixdvpt.fr/repository/maven-public/</url>
+    </repository>
   </repositories>
   
   <dependencies>
@@ -80,8 +84,8 @@
     </dependency>
     <dependency>
       <groupId>net.Indyuce</groupId>
-      <artifactId>MMOItems</artifactId>
-      <version>6.6.5</version>
+      <artifactId>MMOItems-API</artifactId>
+      <version>6.7.5-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
