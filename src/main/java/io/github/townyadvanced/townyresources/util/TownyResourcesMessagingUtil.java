@@ -21,8 +21,13 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.palmergames.adventure.text.Component;
+import com.palmergames.adventure.text.event.HoverEvent;
+import com.palmergames.adventure.text.format.NamedTextColor;
 import com.palmergames.bukkit.towny.TownyAPI;
+import com.palmergames.bukkit.towny.utils.TownyComponents;
 import com.palmergames.bukkit.util.Colors;
+import com.palmergames.util.StringMgmt;
 
 import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
@@ -31,7 +36,6 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class TownyResourcesMessagingUtil {
 
@@ -68,9 +72,9 @@ public class TownyResourcesMessagingUtil {
             return new String[0];
         } else {
             String[] resourcesAsFormattedArray = convertResourceAmountsStringToFormattedArray(resourcesAsString);
-            if(resourcesAsFormattedArray.length > 20) {
-                resourcesAsFormattedArray = Arrays.copyOf(resourcesAsFormattedArray, 21);
-                resourcesAsFormattedArray[20] = "...";
+            if(resourcesAsFormattedArray.length > 10) {
+                resourcesAsFormattedArray = Arrays.copyOf(resourcesAsFormattedArray, 11);
+                resourcesAsFormattedArray[10] = "...";
             }
             return resourcesAsFormattedArray;
         }
@@ -108,6 +112,8 @@ public class TownyResourcesMessagingUtil {
         String materialName;
         String translatedMaterialName;
         for(String resourceAsString: resourcesAsArray) {
+            if (resourceAsString.isEmpty())
+                continue;
             amountAndMaterialName = resourceAsString.split("-");
             amount = amountAndMaterialName[0];
             materialName = amountAndMaterialName[1];
@@ -117,6 +123,24 @@ public class TownyResourcesMessagingUtil {
         return resourcesAsFormattedList.toArray(new String[0]);
     }
     
+
+    /**
+     * Used in the Government StatusScreen events to make the production/available components.
+     *
+     * @param resourcesAsString String representing the Resources due.
+     * @param langString The language string which will be applied to the Component.
+     * @return Component to be used in the StatusScreen
+     */
+    public static Component getSubComponentForGovernmentScreens(String resourcesAsString, String langString) {
+		String[] resourcesAsFormattedArray = convertResourceAmountsStringToFormattedArray(resourcesAsString);
+		String[] resourcesForDisplay = formatResourcesStringForGovernmentScreenDisplay(resourcesAsString);
+		Component component = Component.empty();
+		component = component.append(TownyComponents.legacy(TownyResourcesTranslation.of(langString , resourcesAsFormattedArray.length)))
+			.append(Component.text(StringMgmt.join(resourcesForDisplay, ", "), NamedTextColor.WHITE));
+		component = component.hoverEvent(HoverEvent.showText(Component.text(StringMgmt.join(resourcesAsFormattedArray, ", "))));
+		return component;
+	}
+
     public static String formatExtractionCategoryNameForDisplay(ResourceExtractionCategory resourceExtractionCategory) {
         String categoryName = resourceExtractionCategory.getName();
         if(TownyResourcesTranslation.hasKey("resource_category_" + categoryName)) {
@@ -147,14 +171,10 @@ public class TownyResourcesMessagingUtil {
 
             // mythicmobs integration
             if(TownyResources.getPlugin().isMythicMobsInstalled()) {
-                Optional<MythicItem> maybeMythicItem = TownyResources.getPlugin().getMythicItemManager().getItem(materialName);
-
-                if(maybeMythicItem.isPresent()) {
-                    MythicItem mythicItem = maybeMythicItem.get();
-                    String maybeDisplayName = mythicItem.getDisplayName();
-                    if (maybeDisplayName != null)
-                        return maybeDisplayName.replaceAll("[^\\w\\s]\\w","");
-                }
+            	String mmName = MythicMobsUtil.getMaterialNameForDisplay(materialName);
+            	if (mmName != null) {
+            		return mmName;
+            	}
             }
 
             // mmoitems integration

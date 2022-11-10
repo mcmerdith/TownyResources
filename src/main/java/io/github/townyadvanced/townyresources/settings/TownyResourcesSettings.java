@@ -14,8 +14,9 @@ import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.util.FileMgmt;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.mmoitem.MMOItem;
+import io.github.townyadvanced.townyresources.util.MythicMobsUtil;
+
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 public class TownyResourcesSettings {
 	private static CommentedConfiguration config, newConfig;
@@ -205,11 +206,10 @@ public class TownyResourcesSettings {
 				return true;  //Known material 
 		}
 		// mythicmobs integration
-		if (TownyResources.getPlugin().isMythicMobsInstalled()) {
-			ItemStack mythicItem = TownyResources.getPlugin().getMythicItemManager().getItemStack(materialName);
-			if (mythicItem != null)
-				return true;  // Known material
-		}
+		if (TownyResources.getPlugin().isMythicMobsInstalled()
+		&& MythicMobsUtil.isValidItem(materialName))
+			return true;
+
 		// mmoitems integration
 		if (TownyResources.getPlugin().isMMOItemsInstalled()) {
 			// format: 'TYPE:MATERIALNAME'
@@ -220,7 +220,7 @@ public class TownyResourcesSettings {
 					return true;  // Known material
 			}
 		}
-		return false; //Unknown material		
+		return false; //Unknown material
 	}
 	
 	public static void loadConfig(String filepath, String version) throws TownyException{
@@ -362,6 +362,22 @@ public class TownyResourcesSettings {
 	
 	public static boolean areResourceExtractionLimitsEnabled() {
 		return getBoolean(TownyResourcesConfigNodes.RESOURCE_EXTRACTION_LIMITS_ENABLED);
+	}
+
+	public static boolean areBlocksExtractionLimitsEnabled() {
+		return getBoolean(TownyResourcesConfigNodes.RESOURCE_EXTRACTION_LIMITS_BLOCKS);
+	}
+
+	public static boolean areDropsExtractionLimitsEnabled() {
+		return getBoolean(TownyResourcesConfigNodes.RESOURCE_EXTRACTION_LIMITS_DROPS);
+	}
+
+	public static boolean areShearingExtractionLimitsEnabled() {
+		return getBoolean(TownyResourcesConfigNodes.RESOURCE_EXTRACTION_LIMITS_SHEARING);
+	}
+
+	public static boolean areFishingExtractionLimitsEnabled() {
+		return getBoolean(TownyResourcesConfigNodes.RESOURCE_EXTRACTION_LIMITS_FISHING);
 	}
 
 	public static int getCooldownAfterDailyLimitWarningMessageMillis() {
