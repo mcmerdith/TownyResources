@@ -79,9 +79,9 @@ The plugin also has an optional feature to protect resource value, via daily pla
       material: YOUR_ITEM_MATERIAL
     ```
     <br>_This is not an MMOItems tutorial. Please refer to the MMOItems [*wiki*](https://git.lumine.io/mythiccraft/mmoitems/-/wikis/home)_
-13. If you want to translate material names into a non-english language, first ensure you have the [*LangUtils*](https://ci.nyaacat.com/job/LanguageUtils/job/1.17/) plugin installed, then set your preferred language in the *TownyResources* Config.yml file.
-14. Edit the *TownyResources* config.yml file, and set `surveys > enabled` to `true`.
-15. Run `/tra reload`, then `/ta reload`.
+12. If you want to translate material names into a non-english language, first ensure you have the [*LangUtils*](https://ci.nyaacat.com/job/LanguageUtils/job/1.17/) plugin installed, then set your preferred language in the *TownyResources* Config.yml file.
+13. Edit the *TownyResources* config.yml file, and set `surveys > enabled` to `true`.
+14. Run `/tra reload`, then `/ta reload`.
 # Player Guide
 ### Town Production
 ###### Information

@@ -29,7 +29,7 @@ public class TownyResources extends JavaPlugin {
 	private static boolean legacyMythicMobsInstalled;
 	private static boolean mythicMobsInstalled;
 	private static boolean mmoItemsInstalled;
-
+	
     @Override
     public void onEnable() {
     	
@@ -168,11 +168,11 @@ public class TownyResources extends JavaPlugin {
 	}
 
 	public boolean isMythicMobsInstalled() { return mythicMobsInstalled; }
-
+	
 	public boolean isMythicMobsLegacy() {
 		return legacyMythicMobsInstalled;
 	}
-
+	
 	public boolean isMythicMobsV5() {
 		return mythicMobsInstalled;
 	}

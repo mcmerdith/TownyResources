@@ -118,10 +118,10 @@ public class TownyResourcesMessagingUtil {
         return resourcesAsFormattedList.toArray(new String[0]);
     }
     
-
+    
     /**
      * Used in the Government StatusScreen events to make the production/available components.
-     *
+     * 
      * @param resourcesAsString String representing the Resources due.
      * @param langString The language string which will be applied to the Component.
      * @return Component to be used in the StatusScreen
@@ -135,7 +135,7 @@ public class TownyResourcesMessagingUtil {
 		component = component.hoverEvent(HoverEvent.showText(Component.text(StringMgmt.join(resourcesAsFormattedArray, ", "))));
 		return component;
 	}
-
+    
     public static String formatExtractionCategoryNameForDisplay(ResourceExtractionCategory resourceExtractionCategory) {
         String categoryName = resourceExtractionCategory.getName();
         if(TownyResourcesTranslation.hasKey("resource_category_" + categoryName)) {
@@ -166,7 +166,7 @@ public class TownyResourcesMessagingUtil {
 
             // mythicmobs integration
             if(TownyResources.getPlugin().isMythicMobsInstalled()) {
-            	String mmName = MythicMobsUtil.getMaterialNameForDisplay(materialName);
+            	String mmName = MythicMobsUtil.getMaterialNameForDisplay(materialName); 
             	if (mmName != null) {
             		return mmName;
             	}

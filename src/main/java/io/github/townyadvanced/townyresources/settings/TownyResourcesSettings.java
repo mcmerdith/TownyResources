@@ -206,7 +206,7 @@ public class TownyResourcesSettings {
 				return true;  //Known material 
 		}
 		// mythicmobs integration
-		if (TownyResources.getPlugin().isMythicMobsInstalled()
+		if (TownyResources.getPlugin().isMythicMobsInstalled() 
 		&& MythicMobsUtil.isValidItem(materialName))
 			return true;
 
@@ -220,7 +220,7 @@ public class TownyResourcesSettings {
 					return true;  // Known material
 			}
 		}
-		return false; //Unknown material
+		return false; //Unknown material		
 	}
 	
 	public static void loadConfig(String filepath, String version) throws TownyException{
