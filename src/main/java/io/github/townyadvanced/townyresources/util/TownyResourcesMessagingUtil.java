@@ -1,16 +1,11 @@
 package io.github.townyadvanced.townyresources.util;
 
 import com.meowj.langutils.lang.LanguageHelper;
-import com.palmergames.bukkit.towny.TownyAPI;
-import com.palmergames.bukkit.util.Colors;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
 import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
-import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import io.lumine.mythic.lib.MythicLib;
-import io.lumine.xikage.mythicmobs.items.MythicItem;
 import net.Indyuce.mmoitems.ItemStats;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.item.mmoitem.MMOItem;

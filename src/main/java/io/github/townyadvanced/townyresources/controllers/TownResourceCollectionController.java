@@ -10,10 +10,7 @@ import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation
 import io.github.townyadvanced.townyresources.util.MythicMobsUtil;
 import io.github.townyadvanced.townyresources.util.TownyResourcesMessagingUtil;
 
-import io.lumine.xikage.mythicmobs.items.ItemManager;
 import net.Indyuce.mmoitems.MMOItems;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
